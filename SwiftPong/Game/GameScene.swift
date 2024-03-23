@@ -21,6 +21,7 @@ class GameScene: SKScene {
     
     fileprivate var topWall: SKShapeNode?
     fileprivate var bottomWall: SKShapeNode?
+    fileprivate var gameBoard: SKShapeNode?
 
     // MARK: Instantiation
     
@@ -134,6 +135,22 @@ class GameScene: SKScene {
             
             self.addChild(topWall)
             self.addChild(bottomWall)
+        }
+        
+        // Create game board node
+        let boardNode = SKShapeNode(rect: self.frame)
+        boardNode.name = "gameBoard"
+        boardNode.isHidden = true
+        
+        let boardPhysics = SKPhysicsBody(rectangleOf: self.frame.size)
+        boardPhysics.category = .gameBoard
+        boardPhysics.isDynamic = false
+        boardPhysics.affectedByGravity = false
+        boardNode.physicsBody = boardPhysics
+        
+        self.gameBoard = boardNode
+        if let gameBoard = self.gameBoard {
+            self.addChild(gameBoard)
         }
     }
     

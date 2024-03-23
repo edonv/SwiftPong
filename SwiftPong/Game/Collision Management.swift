@@ -7,6 +7,13 @@
 
 import SpriteKit
 
+extension SKPhysicsContact {
+    func involvesCategories(_ category1: CollisionCategory, and category2: CollisionCategory) -> Bool {
+        return bodyA.category.contains(category1) && bodyB.category.contains(category2)
+            || bodyA.category.contains(category2) && bodyB.category.contains(category1)
+    }
+}
+
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         print("[didBegin] Body A:", contact.bodyA.node?.name ?? "")
@@ -14,14 +21,21 @@ extension GameScene: SKPhysicsContactDelegate {
     }
     
     func didEnd(_ contact: SKPhysicsContact) {
-        print("[didEnd] Body A:", contact.bodyA.node?.name ?? "")
-        print("[didEnd] Body B:", contact.bodyB.node?.name ?? "")
-        
         // When ball exits end of board, check which end for score
+        if contact.involvesCategories(.ball, and: .gameBoard) {
+            let p1Pt = contact.contactPoint.x.sign == .minus
+            
+            score.p1 += p1Pt ? 1 : 0
+            score.p2 += !p1Pt ? 1 : 0
+            shouldResetBall = true
+        } else {
+            print("[didEnd] Body A:", contact.bodyA.node?.name ?? "")
+            print("[didEnd] Body B:", contact.bodyB.node?.name ?? "")
+        }
     }
 }
 
-struct CollisionCategory: OptionSet {
+struct CollisionCategory: OptionSet, Hashable {
     var rawValue: UInt32
     init(rawValue: UInt32) {
         self.rawValue = rawValue

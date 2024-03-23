@@ -11,6 +11,8 @@ import GameController
 class InputManager {
     static let shared = InputManager()
     
+    private var movementByPlayer: [Float] = [0.0, 0.0]
+    
     private init() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidConnect), name: NSNotification.Name.GCKeyboardDidConnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidDisconnect), name: NSNotification.Name.GCKeyboardDidDisconnect, object: nil)
@@ -20,7 +22,9 @@ class InputManager {
         }
     }
     
-    private var movementByPlayer: [Float] = [0.0, 0.0]
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     func getMovement(forPlayer playerIndex: Int) -> Float {
         guard playerIndex < movementByPlayer.count else {
@@ -31,9 +35,6 @@ class InputManager {
         return movementByPlayer[playerIndex]
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
 
     @objc func keyboardDidConnect() {
         print("Keyboard connected!")

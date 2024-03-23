@@ -53,6 +53,10 @@ class GameScene: SKScene {
             titleLabel.run(.fadeIn(withDuration: 2.0))
         }
         
+        // Create reference to leftPaddle
+        self.leftPaddleSprite = self.childNode(withName: "//leftPaddle") as? SKSpriteNode
+        // Create reference to rightPaddle
+        self.rightPaddleSprite = self.childNode(withName: "//rightPaddle") as? SKSpriteNode
     }
 }
 

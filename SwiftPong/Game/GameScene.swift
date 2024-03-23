@@ -105,7 +105,7 @@ class GameScene: SKScene {
         self.ballSprite = self.childNode(withName: "//ball") as? SKSpriteNode
         if let ballSprite = self.ballSprite,
            let texture = ballSprite.texture {
-            let physicsBody = SKPhysicsBody(texture: texture, size: ballSprite.size)
+            let physicsBody = SKPhysicsBody(circleOfRadius: ballSprite.size.width / 2) // (texture: texture, size: ballSprite.size)
             physicsBody.friction = 0
             physicsBody.linearDamping = 0
             physicsBody.restitution = 1

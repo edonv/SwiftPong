@@ -11,7 +11,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    fileprivate var label: SKLabelNode?
+    fileprivate var titleLabel: SKLabelNode?
     
     fileprivate var leftPaddle: SKSpriteNode?
     fileprivate var rightPaddle: SKSpriteNode?
@@ -46,11 +46,11 @@ class GameScene: SKScene {
     // MARK: Internals
     
     private func setUpScene() {
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(.fadeIn(withDuration: 2.0))
+        // Create reference to titleLabel
+        self.titleLabel = self.childNode(withName: "//titleLabel") as? SKLabelNode
+        if let titleLabel = self.titleLabel {
+            titleLabel.alpha = 0.0
+            titleLabel.run(.fadeIn(withDuration: 2.0))
         }
         
     }

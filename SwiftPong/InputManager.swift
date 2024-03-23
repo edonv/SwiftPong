@@ -62,3 +62,53 @@ class InputManager {
         movementByPlayer[0] -= keyboard.button(forKeyCode: .keyW)?.isPressed == true ? 1 : 0
     }
 }
+
+// MARK: Unused Combine code
+
+//import Combine
+
+//enum ControllerMode {
+//    case keyboard(GCKeyboard)
+//    case keyboardGamepad(player1: GCKeyboard, player2: GCExtendedGamepad)
+//    case gamepadKeyboard(player1: GCExtendedGamepad, player2: GCKeyboard)
+//    case dualGamepad(player1: GCExtendedGamepad, player2: GCExtendedGamepad)
+//}
+
+//func combineTemp() {
+//    let keyboardConnect = NotificationCenter.default.publisher(for: .GCKeyboardDidConnect)
+//        .compactMap { notif in
+//            notif.object as? GCKeyboard
+//        }
+//        // Create 1-time publisher to check if there is already a keyboard connected
+//        .merge(with: Just(GCKeyboard.coalesced).compactMap { $0 })
+//        .map { $0 as GCKeyboard? }
+//
+//    let keyboardConnection = NotificationCenter.default.publisher(for: .GCKeyboardDidDisconnect)
+//        .map { _ in nil as GCKeyboard? }
+//        .merge(with: keyboardConnect)
+//        .eraseToAnyPublisher()
+//
+//    let controllerConnect = NotificationCenter.default.publisher(for: .GCControllerDidConnect)
+//        .compactMap { notif in
+//            notif.object as? GCController
+//        }
+//        // Create 1-time publisher to check if there is already a keyboard connected
+//        .merge(with: Just(GCController.current).compactMap { $0 })
+//        .map { $0 as GCController? }
+//
+//    let controllerConnection = NotificationCenter.default.publisher(for: .GCControllerDidDisconnect)
+//        .map { _ in nil as GCController? }
+//        .merge(with: controllerConnect)
+//        .eraseToAnyPublisher()
+//
+//    Publishers.CombineLatest(
+//        keyboardConnection,
+//        controllerConnection
+//    )
+//    .map { (keyboard: GCKeyboard?, controller: GCController?) -> ControllerMode? in
+//        if let keyboard = keyboard,
+//           let controller = controller {
+//            return
+//        }
+//    }
+//}

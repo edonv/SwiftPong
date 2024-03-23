@@ -24,6 +24,7 @@ class GameScene: SKScene {
     fileprivate var gameBoard: SKShapeNode?
 
     var score: (p1: Int, p2: Int) = (0, 0)
+    var shouldResetBall = false
     
     // MARK: Instantiation
     
@@ -56,6 +57,12 @@ class GameScene: SKScene {
            let rightScoreLabel = self.rightScoreLabel {
             leftScoreLabel.text = "\(score.p1)"
             rightScoreLabel.text = "\(score.p2)"
+        }
+        
+        // When score changes, move ball back to center, delay, then start moving in random direction with impulse or something
+        if shouldResetBall {
+            resetBallNode()
+            shouldResetBall = false
         }
     }
     

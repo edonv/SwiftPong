@@ -59,7 +59,7 @@ class GameScene: SKScene {
             rightScoreLabel.text = "\(score.p2)"
         }
         
-        // When score changes, move ball back to center, delay, then start moving in random direction with impulse or something
+        // When score changes, move ball back to center, delay, then start moving
         if shouldResetBall {
             resetBallNode()
             shouldResetBall = false

@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct SwiftPongApp: App {
+    @NSApplicationDelegateAdaptor(SwiftPongAppDelegate.self) var appDelegate
+
     var body: some Scene {
         WindowGroup {
             GameView()

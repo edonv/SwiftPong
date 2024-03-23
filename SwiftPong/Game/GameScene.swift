@@ -13,6 +13,9 @@ class GameScene: SKScene {
     
     fileprivate var label: SKLabelNode?
     fileprivate var spinnyNode: SKShapeNode?
+    
+    fileprivate var leftPaddle: SKSpriteNode?
+    fileprivate var rightPaddle: SKSpriteNode?
 
     // MARK: Instantiation
     

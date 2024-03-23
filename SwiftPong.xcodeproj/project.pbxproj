@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEBCCB7A2BAF4DE700689886 /* SwiftPongAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBCCB792BAF4DE700689886 /* SwiftPongAppDelegate.swift */; };
 		DA7A79AA2BAF37720010CC01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA7A79A92BAF37720010CC01 /* Assets.xcassets */; };
 		DA7A79AE2BAF37720010CC01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA7A79AD2BAF37720010CC01 /* Preview Assets.xcassets */; };
 		DA7A79C02BAF38440010CC01 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DA7A79B52BAF38440010CC01 /* GameScene.sks */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CEBCCB792BAF4DE700689886 /* SwiftPongAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftPongAppDelegate.swift; sourceTree = "<group>"; };
 		DA7A79A22BAF37710010CC01 /* SwiftPong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftPong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7A79A92BAF37720010CC01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA7A79AD2BAF37720010CC01 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				DA7A79C92BAF38840010CC01 /* Info.plist */,
 				DA7A79BF2BAF38440010CC01 /* SwiftPong.entitlements */,
 				DA7A79AC2BAF37720010CC01 /* Preview Content */,
+				CEBCCB792BAF4DE700689886 /* SwiftPongAppDelegate.swift */,
 			);
 			path = SwiftPong;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				DA7A79C62BAF38440010CC01 /* SwiftPongApp.swift in Sources */,
 				DA7A79C12BAF38440010CC01 /* GameScene.swift in Sources */,
 				DA7A79C42BAF38440010CC01 /* GameView.swift in Sources */,
+				CEBCCB7A2BAF4DE700689886 /* SwiftPongAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

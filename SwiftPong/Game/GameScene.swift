@@ -104,8 +104,6 @@ class GameScene: SKScene {
         self.ballSprite = self.childNode(withName: "//ball") as? SKSpriteNode
         if let ballSprite = self.ballSprite,
            let texture = ballSprite.texture {
-            ballSprite.position = .zero
-            
             let physicsBody = SKPhysicsBody(texture: texture, size: ballSprite.size)
             physicsBody.friction = 0
             physicsBody.linearDamping = 0
@@ -113,11 +111,9 @@ class GameScene: SKScene {
             physicsBody.category = .ball
             physicsBody.collisionCategories = [.enclosingWall, .paddle]
             physicsBody.contactTestCategories = [.gameBoard]
-            
             ballSprite.physicsBody = physicsBody
             
-            #warning("TODO: randomize initial force direction")
-            physicsBody.applyImpulse(.init(dx: 100, dy: 0))
+            resetBallNode()
         }
         
         // Create top/bottom wall nodes
@@ -139,6 +135,16 @@ class GameScene: SKScene {
             self.addChild(topWall)
             self.addChild(bottomWall)
         }
+    }
+    
+    private func resetBallNode() {
+        ballSprite?.position = .zero
+        
+        #warning("TODO: randomize initial force direction")
+        ballSprite?.run(.sequence([
+            .wait(forDuration: 1, withRange: 3),
+            .applyImpulse(.init(dx: 100, dy: 100), duration: 0.1)
+        ]))
     }
 }
 

@@ -46,7 +46,7 @@ class GameScene: SKScene {
     
     /// This is called every frame.
     override func update(_ currentTime: TimeInterval) {
-        
+        InputManager.shared.update()
     }
     
     // MARK: Internals

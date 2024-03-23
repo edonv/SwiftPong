@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEBCCB7C2BAF5DA900689886 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBCCB7B2BAF5DA900689886 /* InputManager.swift */; };
 		DA7A79AA2BAF37720010CC01 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA7A79A92BAF37720010CC01 /* Assets.xcassets */; };
 		DA7A79AE2BAF37720010CC01 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA7A79AD2BAF37720010CC01 /* Preview Assets.xcassets */; };
 		DA7A79C02BAF38440010CC01 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DA7A79B52BAF38440010CC01 /* GameScene.sks */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CEBCCB7B2BAF5DA900689886 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		DA7A79A22BAF37710010CC01 /* SwiftPong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftPong.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA7A79A92BAF37720010CC01 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA7A79AD2BAF37720010CC01 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 		DA7A79A42BAF37710010CC01 /* SwiftPong */ = {
 			isa = PBXGroup;
 			children = (
+				CEBCCB7B2BAF5DA900689886 /* InputManager.swift */,
 				DA7A79BB2BAF38440010CC01 /* SwiftPongApp.swift */,
 				DA7A79B42BAF38440010CC01 /* Game */,
 				DA7A79B92BAF38440010CC01 /* GameView.swift */,
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA7A79CD2BAF710E0010CC01 /* Collision Management.swift in Sources */,
+				CEBCCB7C2BAF5DA900689886 /* InputManager.swift in Sources */,
 				DA7A79C22BAF38440010CC01 /* Actions.swift in Sources */,
 				DA7A79C62BAF38440010CC01 /* SwiftPongApp.swift in Sources */,
 				DA7A79C12BAF38440010CC01 /* GameScene.swift in Sources */,

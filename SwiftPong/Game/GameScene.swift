@@ -23,6 +23,8 @@ class GameScene: SKScene {
     fileprivate var bottomWall: SKShapeNode?
     fileprivate var gameBoard: SKShapeNode?
 
+    var score: (p1: Int, p2: Int) = (0, 0)
+    
     // MARK: Instantiation
     
     class func newGameScene() -> GameScene {
@@ -48,6 +50,13 @@ class GameScene: SKScene {
     /// This is called every frame.
     override func update(_ currentTime: TimeInterval) {
         InputManager.shared.update()
+        
+        // Update score
+        if let leftScoreLabel = self.leftScoreLabel,
+           let rightScoreLabel = self.rightScoreLabel {
+            leftScoreLabel.text = "\(score.p1)"
+            rightScoreLabel.text = "\(score.p2)"
+        }
     }
     
     // MARK: Internals

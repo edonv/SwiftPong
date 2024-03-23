@@ -158,6 +158,7 @@ class GameScene: SKScene {
     
     private func resetBallNode() {
         ballSprite?.position = .zero
+        ballSprite?.physicsBody?.velocity = .zero
         
         #warning("TODO: randomize initial force direction")
         ballSprite?.run(.sequence([

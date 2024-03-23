@@ -83,10 +83,10 @@
 		DA7A79B42BAF38440010CC01 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				DA7A79B82BAF38440010CC01 /* Actions.sks */,
+				DA7A79B72BAF38440010CC01 /* Actions.swift */,
 				DA7A79B52BAF38440010CC01 /* GameScene.sks */,
 				DA7A79B62BAF38440010CC01 /* GameScene.swift */,
-				DA7A79B72BAF38440010CC01 /* Actions.swift */,
-				DA7A79B82BAF38440010CC01 /* Actions.sks */,
 			);
 			path = Game;
 			sourceTree = "<group>";

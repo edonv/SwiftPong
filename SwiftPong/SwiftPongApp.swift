@@ -16,6 +16,7 @@ struct SwiftPongApp: App {
         WindowGroup {
             GameView()
         }
+        .windowStyle(.hiddenTitleBar)
     }
 }
 

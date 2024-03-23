@@ -176,7 +176,7 @@ class GameScene: SKScene {
         ballSprite?.position = .zero
         ballSprite?.physicsBody?.velocity = .zero
         
-        #warning("TODO: randomize initial force direction")
+        #warning("TODO: randomize force direction")
         ballSprite?.run(.sequence([
             .wait(forDuration: 1, withRange: 3),
             .applyImpulse(.init(dx: 100, dy: 100), duration: 0.1)

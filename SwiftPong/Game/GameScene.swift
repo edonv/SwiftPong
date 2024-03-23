@@ -58,13 +58,25 @@ class GameScene: SKScene {
         
         // Create reference to leftScoreLabel
         self.leftScoreLabel = self.childNode(withName: "//leftScoreLabel") as? SKLabelNode
+        if let leftScoreLabel = self.leftScoreLabel {
+            leftScoreLabel.fontColor = .init(named: "Player 1")
+        }
         // Create reference to rightScoreLabel
         self.rightScoreLabel = self.childNode(withName: "//rightScoreLabel") as? SKLabelNode
+        if let rightScoreLabel = self.rightScoreLabel {
+            rightScoreLabel.fontColor = .init(named: "Player 2")
+        }
         
         // Create reference to leftPaddle
         self.leftPaddleSprite = self.childNode(withName: "//leftPaddle") as? SKSpriteNode
+        if let leftPaddleSprite = self.leftPaddleSprite {
+            leftPaddleSprite.color = .init(named: "Player 1") ?? leftPaddleSprite.color
+        }
         // Create reference to rightPaddle
         self.rightPaddleSprite = self.childNode(withName: "//rightPaddle") as? SKSpriteNode
+        if let rightPaddleSprite = self.rightPaddleSprite {
+            rightPaddleSprite.color = .init(named: "Player 2") ?? rightPaddleSprite.color
+        }
         // Create reference to ball
         self.ballSprite = self.childNode(withName: "//ball") as? SKSpriteNode
     }

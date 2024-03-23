@@ -12,7 +12,6 @@ import SpriteKit
 class GameScene: SKScene {
     
     fileprivate var label: SKLabelNode?
-    fileprivate var spinnyNode: SKShapeNode?
     
     fileprivate var leftPaddle: SKSpriteNode?
     fileprivate var rightPaddle: SKSpriteNode?
@@ -54,54 +53,22 @@ class GameScene: SKScene {
             label.run(.fadeIn(withDuration: 2.0))
         }
         
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode(rectOf: CGSize(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 4.0
-            spinnyNode.run(.repeatForever(.rotate(byAngle: .pi, duration: 1)))
-            spinnyNode.run(.sequence(
-                [
-                    .wait(forDuration: 0.5),
-                    .fadeOut(withDuration: 0.5),
-                    .removeFromParent()
-                ]
-            ))
-        }
-    }
-
-    private func makeSpinny(at pos: CGPoint, color: SKColor) {
-        guard let spinny = self.spinnyNode?.copy() as! SKShapeNode? else { return }
-        spinny.position = pos
-        spinny.strokeColor = color
-        self.addChild(spinny)
     }
 }
 
 // MARK: Shared Interactive Logic
 
 extension GameScene {
-    private func makeSpinnies(at locations: [CGPoint], color: SKColor) {
-        for loc in locations {
-            self.makeSpinny(at: loc, color: color)
-        }
-    }
-    
     private func startTouches(at locations: [CGPoint]) {
-        if let label = self.label {
-            label.run(.gtPulse, withKey: "fadeInOut")
-        }
         
-        self.makeSpinnies(at: locations, color: .green)
     }
     
     private func moveTouches(at locations: [CGPoint]) {
-        self.makeSpinnies(at: locations, color: .blue)
+        
     }
     
     private func endTouches(at locations: [CGPoint]) {
-        self.makeSpinnies(at: locations, color: .red)
+        
     }
 }
 

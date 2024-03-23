@@ -14,6 +14,8 @@ class GameScene: SKScene {
     fileprivate var label: SKLabelNode?
     fileprivate var spinnyNode: SKShapeNode?
 
+    // MARK: Instantiation
+    
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
@@ -26,6 +28,20 @@ class GameScene: SKScene {
         
         return scene
     }
+    
+    // MARK: SKScene Overrides
+    
+    /// This is called when the scene is placed in a view.
+    override func didMove(to view: SKView) {
+        self.setUpScene()
+    }
+    
+    /// This is called every frame.
+    override func update(_ currentTime: TimeInterval) {
+        
+    }
+    
+    // MARK: Internals
     
     private func setUpScene() {
         // Get label node from scene and store it for use later
@@ -51,21 +67,12 @@ class GameScene: SKScene {
             ))
         }
     }
-    
-    override func didMove(to view: SKView) {
-        // Set up
-        self.setUpScene()
-    }
 
     private func makeSpinny(at pos: CGPoint, color: SKColor) {
         guard let spinny = self.spinnyNode?.copy() as! SKShapeNode? else { return }
         spinny.position = pos
         spinny.strokeColor = color
         self.addChild(spinny)
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
     }
 }
 

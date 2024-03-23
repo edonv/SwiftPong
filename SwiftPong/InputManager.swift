@@ -44,7 +44,6 @@ class InputManager {
         return movementByPlayer[playerIndex]
     }
     
-
     @objc func keyboardDidConnect() {
         print("Keyboard connected!")
     }

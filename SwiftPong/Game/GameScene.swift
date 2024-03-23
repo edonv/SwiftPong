@@ -49,6 +49,11 @@ class GameScene: SKScene {
     // MARK: Internals
     
     private func setUpScene() {
+        // Set physics contact delegate
+        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = .zero
+//        self.physicsWorld.gravity.dx = self.physicsWorld.gravity.dy
+        
         // Create reference to titleLabel
         self.titleLabel = self.childNode(withName: "//titleLabel") as? SKLabelNode
         if let titleLabel = self.titleLabel {
@@ -71,14 +76,46 @@ class GameScene: SKScene {
         self.leftPaddleSprite = self.childNode(withName: "//leftPaddle") as? SKSpriteNode
         if let leftPaddleSprite = self.leftPaddleSprite {
             leftPaddleSprite.color = .init(named: "Player 1") ?? leftPaddleSprite.color
+            
+            let physicsBody = SKPhysicsBody(rectangleOf: leftPaddleSprite.size)
+            physicsBody.affectedByGravity = false
+            physicsBody.category = .paddle
+            physicsBody.collisionCategories = [.ball, .enclosingWall]
+            physicsBody.isDynamic = false
+            leftPaddleSprite.physicsBody = physicsBody
         }
         // Create reference to rightPaddle
         self.rightPaddleSprite = self.childNode(withName: "//rightPaddle") as? SKSpriteNode
         if let rightPaddleSprite = self.rightPaddleSprite {
             rightPaddleSprite.color = .init(named: "Player 2") ?? rightPaddleSprite.color
+            
+            let physicsBody = SKPhysicsBody(rectangleOf: rightPaddleSprite.size)
+            physicsBody.affectedByGravity = false
+            physicsBody.category = .paddle
+            physicsBody.collisionCategories = [.ball, .enclosingWall]
+            physicsBody.isDynamic = false
+            rightPaddleSprite.physicsBody = physicsBody
         }
-        // Create reference to ball
+        
+        // Create reference to ball, set up physics
         self.ballSprite = self.childNode(withName: "//ball") as? SKSpriteNode
+        if let ballSprite = self.ballSprite,
+           let texture = ballSprite.texture {
+            ballSprite.position = .zero
+            
+            let physicsBody = SKPhysicsBody(texture: texture, size: ballSprite.size)
+            physicsBody.friction = 0
+            physicsBody.linearDamping = 0
+            physicsBody.restitution = 1
+            physicsBody.category = .ball
+            physicsBody.collisionCategories = [.enclosingWall, .paddle]
+            physicsBody.contactTestCategories = [.gameBoard]
+            
+            ballSprite.physicsBody = physicsBody
+            
+            #warning("TODO: randomize initial force direction")
+            physicsBody.applyImpulse(.init(dx: 100, dy: 0))
+        }
     }
 }
 
@@ -134,6 +171,19 @@ extension GameScene {
     
     override func mouseUp(with event: NSEvent) {
         endTouches(at: [event.location(in: self)])
+    }
+    
+    override func keyDown(with event: NSEvent) {
+//        print(event.keyCode)
+        
+//        let keyPressed = event.charactersIgnoringModifiers
+//        // do stuff to figure out which key is pressed
+//        let key = "s"
+//        // do stuff to figure out which direction and player that maps to
+//        let direction = "UP"
+//        let player = 2
+//        
+//        self.leftPaddleSprite?.run(.repeatForever(.moveTo(y: 10, duration: 1)), withKey: "movePlayer1")
     }
 }
 #endif

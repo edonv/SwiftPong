@@ -12,9 +12,12 @@ import SpriteKit
 class GameScene: SKScene {
     
     fileprivate var titleLabel: SKLabelNode?
+    fileprivate var leftScoreLabel: SKLabelNode?
+    fileprivate var rightScoreLabel: SKLabelNode?
     
     fileprivate var leftPaddleSprite: SKSpriteNode?
     fileprivate var rightPaddleSprite: SKSpriteNode?
+    fileprivate var ballSprite: SKSpriteNode?
 
     // MARK: Instantiation
     
@@ -53,10 +56,17 @@ class GameScene: SKScene {
             titleLabel.run(.fadeIn(withDuration: 2.0))
         }
         
+        // Create reference to leftScoreLabel
+        self.leftScoreLabel = self.childNode(withName: "//leftScoreLabel") as? SKLabelNode
+        // Create reference to rightScoreLabel
+        self.rightScoreLabel = self.childNode(withName: "//rightScoreLabel") as? SKLabelNode
+        
         // Create reference to leftPaddle
         self.leftPaddleSprite = self.childNode(withName: "//leftPaddle") as? SKSpriteNode
         // Create reference to rightPaddle
         self.rightPaddleSprite = self.childNode(withName: "//rightPaddle") as? SKSpriteNode
+        // Create reference to ball
+        self.ballSprite = self.childNode(withName: "//ball") as? SKSpriteNode
     }
 }
 

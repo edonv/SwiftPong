@@ -12,7 +12,7 @@ class InputManager {
     static let shared = InputManager()
     private var movementByPlayer: [Float] = [0.0, 0.0]
     
-    func GetMovement(forPlayer playerIndex: Int) -> Float {
+    func getMovement(forPlayer playerIndex: Int) -> Float {
         guard playerIndex < movementByPlayer.count else {
             print("There aren't that many players!")
             abort()

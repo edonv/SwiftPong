@@ -9,11 +9,12 @@ import SwiftUI
 import SpriteKit
 
 struct GameView: View {
-    private let scene = GameScene.newGameScene()
+    @EnvironmentObject
+    private var appDelegate: AppDelegate
     
     var body: some View {
         SpriteView(
-            scene: scene,
+            scene: appDelegate.gameScene,
             transition: .crossFade(withDuration: 2),
             isPaused: false,
             preferredFramesPerSecond: 60,

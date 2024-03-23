@@ -28,7 +28,7 @@ typealias AppDeleteAdaptor = UIApplicationDelegateAdaptor
 #endif
 
 class AppDelegate: NSObject, AppDelegateProtocol, ObservableObject {
-    
+    let gameScene: GameScene = .newGameScene()
 }
 
 #if os(macOS)

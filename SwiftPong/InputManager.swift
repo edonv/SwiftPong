@@ -10,7 +10,7 @@ import GameController
 
 class InputManager {
     static let shared = InputManager()
-    private var movementByPlayer: [Float] = []
+    private var movementByPlayer: [Float] = [0.0, 0.0]
     
     func GetMovement(forPlayer playerIndex: Int) -> Float {
         guard playerIndex < movementByPlayer.count else {
@@ -47,6 +47,10 @@ class InputManager {
             return
         }
         
-        keyboard.button(forKeyCode: .keyA)
+        movementByPlayer[0] = 0.0
+        movementByPlayer[1] = 0.0
+        
+        if (keyboard.button(forKeyCode: .keyD)?.isPressed != nil) { movementByPlayer[0] += 1.0 }
+        if (keyboard.button(forKeyCode: .keyW)?.isPressed != nil) { movementByPlayer[0] -= 1.0 }
     }
 }

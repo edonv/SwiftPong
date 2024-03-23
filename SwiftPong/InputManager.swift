@@ -53,9 +53,7 @@ class InputManager {
     }
     
     func update() {
-        guard let keyboard = GCKeyboard.coalesced?.keyboardInput else {
-            return
-        }
+        guard let keyboard = GCKeyboard.coalesced?.keyboardInput else { return }
         
         movementByPlayer[0] = 0.0
         movementByPlayer[1] = 0.0

@@ -18,6 +18,9 @@ class GameScene: SKScene {
     fileprivate var leftPaddleSprite: SKSpriteNode?
     fileprivate var rightPaddleSprite: SKSpriteNode?
     fileprivate var ballSprite: SKSpriteNode?
+    
+    fileprivate var topWall: SKShapeNode?
+    fileprivate var bottomWall: SKShapeNode?
 
     // MARK: Instantiation
     
@@ -115,6 +118,26 @@ class GameScene: SKScene {
             
             #warning("TODO: randomize initial force direction")
             physicsBody.applyImpulse(.init(dx: 100, dy: 0))
+        }
+        
+        // Create top/bottom wall nodes
+        let wallPath = CGMutablePath()
+        wallPath.move(to: .init(x: self.frame.minX, y: 0))
+        wallPath.addLine(to: .init(x: self.frame.maxX, y: 0))
+        let wallNode = SKShapeNode(path: wallPath)
+        wallNode.strokeColor = .clear
+        self.topWall = wallNode.copy() as! SKShapeNode?
+        self.bottomWall = wallNode.copy() as! SKShapeNode?
+        
+        if let topWall = self.topWall,
+           let bottomWall = self.bottomWall {
+            topWall.position.y = self.frame.maxY
+            bottomWall.position.y = self.frame.minY
+            
+            // TODO: add collision stuff
+            
+            self.addChild(topWall)
+            self.addChild(bottomWall)
         }
     }
 }

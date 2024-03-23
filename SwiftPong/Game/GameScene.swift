@@ -15,9 +15,9 @@ class GameScene: SKScene {
     fileprivate var leftScoreLabel: SKLabelNode?
     fileprivate var rightScoreLabel: SKLabelNode?
     
-    fileprivate var leftPaddleSprite: SKSpriteNode?
-    fileprivate var rightPaddleSprite: SKSpriteNode?
-    fileprivate var ballSprite: SKSpriteNode?
+    fileprivate var leftPaddle: SKSpriteNode?
+    fileprivate var rightPaddle: SKSpriteNode?
+    fileprivate var ball: SKSpriteNode?
     
     fileprivate var topWall: SKShapeNode?
     fileprivate var bottomWall: SKShapeNode?
@@ -93,42 +93,42 @@ class GameScene: SKScene {
         }
         
         // Create reference to leftPaddle
-        self.leftPaddleSprite = self.childNode(withName: "//leftPaddle") as? SKSpriteNode
-        if let leftPaddleSprite = self.leftPaddleSprite {
-            leftPaddleSprite.color = .init(named: "Player 1") ?? leftPaddleSprite.color
+        self.leftPaddle = self.childNode(withName: "//leftPaddle") as? SKSpriteNode
+        if let leftPaddle = self.leftPaddle {
+            leftPaddle.color = .init(named: "Player 1") ?? leftPaddle.color
             
-            let physicsBody = SKPhysicsBody(rectangleOf: leftPaddleSprite.size)
+            let physicsBody = SKPhysicsBody(rectangleOf: leftPaddle.size)
             physicsBody.affectedByGravity = false
             physicsBody.category = .paddle
             physicsBody.collisionCategories = [.ball, .enclosingWall]
             physicsBody.isDynamic = false
-            leftPaddleSprite.physicsBody = physicsBody
+            leftPaddle.physicsBody = physicsBody
         }
         // Create reference to rightPaddle
-        self.rightPaddleSprite = self.childNode(withName: "//rightPaddle") as? SKSpriteNode
-        if let rightPaddleSprite = self.rightPaddleSprite {
-            rightPaddleSprite.color = .init(named: "Player 2") ?? rightPaddleSprite.color
+        self.rightPaddle = self.childNode(withName: "//rightPaddle") as? SKSpriteNode
+        if let rightPaddle = self.rightPaddle {
+            rightPaddle.color = .init(named: "Player 2") ?? rightPaddle.color
             
-            let physicsBody = SKPhysicsBody(rectangleOf: rightPaddleSprite.size)
+            let physicsBody = SKPhysicsBody(rectangleOf: rightPaddle.size)
             physicsBody.affectedByGravity = false
             physicsBody.category = .paddle
             physicsBody.collisionCategories = [.ball, .enclosingWall]
             physicsBody.isDynamic = false
-            rightPaddleSprite.physicsBody = physicsBody
+            rightPaddle.physicsBody = physicsBody
         }
         
         // Create reference to ball, set up physics
-        self.ballSprite = self.childNode(withName: "//ball") as? SKSpriteNode
-        if let ballSprite = self.ballSprite,
-           let texture = ballSprite.texture {
-            let physicsBody = SKPhysicsBody(circleOfRadius: ballSprite.size.width / 2) // (texture: texture, size: ballSprite.size)
+        self.ball = self.childNode(withName: "//ball") as? SKSpriteNode
+        if let ball = self.ball,
+           let texture = ball.texture {
+            let physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2) // (texture: texture, size: ballSprite.size)
             physicsBody.friction = 0
             physicsBody.linearDamping = 0
             physicsBody.restitution = 1
             physicsBody.category = .ball
             physicsBody.collisionCategories = [.enclosingWall, .paddle]
             physicsBody.contactTestCategories = [.gameBoard]
-            ballSprite.physicsBody = physicsBody
+            ball.physicsBody = physicsBody
             
             resetBallNode()
         }
@@ -173,11 +173,11 @@ class GameScene: SKScene {
     }
     
     private func resetBallNode() {
-        ballSprite?.position = .zero
-        ballSprite?.physicsBody?.velocity = .zero
+        ball?.position = .zero
+        ball?.physicsBody?.velocity = .zero
         
         #warning("TODO: randomize force direction")
-        ballSprite?.run(.sequence([
+        ball?.run(.sequence([
             .wait(forDuration: 1, withRange: 3),
             .applyImpulse(.init(dx: 100, dy: 100), duration: 0.1)
         ]))

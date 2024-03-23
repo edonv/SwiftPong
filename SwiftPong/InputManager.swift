@@ -58,7 +58,7 @@ class InputManager {
         movementByPlayer[0] = 0.0
         movementByPlayer[1] = 0.0
         
-        if (keyboard.button(forKeyCode: .keyD)?.isPressed != nil) { movementByPlayer[0] += 1.0 }
-        if (keyboard.button(forKeyCode: .keyW)?.isPressed != nil) { movementByPlayer[0] -= 1.0 }
+        movementByPlayer[0] += keyboard.button(forKeyCode: .keyS)?.isPressed == true ? 1 : 0
+        movementByPlayer[0] -= keyboard.button(forKeyCode: .keyW)?.isPressed == true ? 1 : 0
     }
 }

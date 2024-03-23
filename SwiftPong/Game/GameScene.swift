@@ -123,6 +123,11 @@ class GameScene: SKScene {
         wallPath.addLine(to: .init(x: self.frame.maxX, y: 0))
         let wallNode = SKShapeNode(path: wallPath)
         wallNode.strokeColor = .clear
+        
+        let wallPhysics = SKPhysicsBody(edgeChainFrom: wallPath)
+        wallPhysics.category = .enclosingWall
+        wallNode.physicsBody = wallPhysics
+        
         self.topWall = wallNode.copy() as! SKShapeNode?
         self.bottomWall = wallNode.copy() as! SKShapeNode?
         
@@ -130,9 +135,6 @@ class GameScene: SKScene {
            let bottomWall = self.bottomWall {
             topWall.position.y = self.frame.maxY
             bottomWall.position.y = self.frame.minY
-            
-            // TODO: add collision stuff
-            
             self.addChild(topWall)
             self.addChild(bottomWall)
         }

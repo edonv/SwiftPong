@@ -1,5 +1,5 @@
 //
-//  Collision Collision Management.swift
+//  Collision Management.swift
 //  SwiftPong
 //
 //  Created by Edon Valdman on 3/23/24.

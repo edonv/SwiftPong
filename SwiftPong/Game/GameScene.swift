@@ -55,11 +55,12 @@ class GameScene: SKScene {
     
     /// This is called every frame.
     override func update(_ currentTime: TimeInterval) {
+        // Update controller input
         InputManager.shared.update()
         
+        // Update paddle position
         leftPaddle?.position.y += CGFloat(InputManager.shared.getMovement(forPlayer: 0) * paddleSpeed)
         rightPaddle?.position.y += CGFloat(InputManager.shared.getMovement(forPlayer: 1) * paddleSpeed)
-        
         if let leftPaddle = self.leftPaddle {
             leftPaddle.position.y = leftPaddle.position.y
                 .clamped(to: (bottomWall?.position.y ?? 0.0)...(topWall?.position.y ?? 0.0))

@@ -17,6 +17,7 @@
 		DA7A79C42BAF38440010CC01 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A79B92BAF38440010CC01 /* GameView.swift */; };
 		DA7A79C62BAF38440010CC01 /* SwiftPongApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A79BB2BAF38440010CC01 /* SwiftPongApp.swift */; };
 		DA7A79CD2BAF710E0010CC01 /* Collision Management.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A79CC2BAF710E0010CC01 /* Collision Management.swift */; };
+		DA7A79CF2BAFA8AB0010CC01 /* Number+Clamping.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7A79CE2BAFA8AB0010CC01 /* Number+Clamping.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		DA7A79BF2BAF38440010CC01 /* SwiftPong.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = SwiftPong.entitlements; sourceTree = "<group>"; };
 		DA7A79C92BAF38840010CC01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DA7A79CC2BAF710E0010CC01 /* Collision Management.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collision Management.swift"; sourceTree = "<group>"; };
+		DA7A79CE2BAFA8AB0010CC01 /* Number+Clamping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Clamping.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				DA7A79BB2BAF38440010CC01 /* SwiftPongApp.swift */,
 				DA7A79B42BAF38440010CC01 /* Game */,
 				DA7A79B92BAF38440010CC01 /* GameView.swift */,
+				DA7A79D02BAFA8AF0010CC01 /* Extensions */,
 				DA7A79A92BAF37720010CC01 /* Assets.xcassets */,
 				DA7A79C92BAF38840010CC01 /* Info.plist */,
 				DA7A79BF2BAF38440010CC01 /* SwiftPong.entitlements */,
@@ -95,6 +98,14 @@
 				DA7A79CC2BAF710E0010CC01 /* Collision Management.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		DA7A79D02BAFA8AF0010CC01 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA7A79CE2BAFA8AB0010CC01 /* Number+Clamping.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +182,7 @@
 			files = (
 				DA7A79CD2BAF710E0010CC01 /* Collision Management.swift in Sources */,
 				CEBCCB7C2BAF5DA900689886 /* InputManager.swift in Sources */,
+				DA7A79CF2BAFA8AB0010CC01 /* Number+Clamping.swift in Sources */,
 				DA7A79C22BAF38440010CC01 /* Actions.swift in Sources */,
 				DA7A79C62BAF38440010CC01 /* SwiftPongApp.swift in Sources */,
 				DA7A79C12BAF38440010CC01 /* GameScene.swift in Sources */,

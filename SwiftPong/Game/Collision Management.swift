@@ -19,20 +19,6 @@ extension GameScene: SKPhysicsContactDelegate {
         print("[didBegin] Body A:", contact.bodyA.node?.name ?? "")
         print("[didBegin] Body B:", contact.bodyB.node?.name ?? "")
     }
-    
-    func didEnd(_ contact: SKPhysicsContact) {
-        // When ball exits end of board, check which end for score
-        if contact.involvesCategories(.ball, and: .gameBoard) {
-            let p1Pt = contact.contactPoint.x.sign == .minus
-            
-            score.p1 += p1Pt ? 1 : 0
-            score.p2 += !p1Pt ? 1 : 0
-            shouldResetBall = true
-        } else {
-            print("[didEnd] Body A:", contact.bodyA.node?.name ?? "")
-            print("[didEnd] Body B:", contact.bodyB.node?.name ?? "")
-        }
-    }
 }
 
 struct CollisionCategory: OptionSet, Hashable {

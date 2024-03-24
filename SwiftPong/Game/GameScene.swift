@@ -30,6 +30,7 @@ class GameScene: SKScene {
     let paddleSpeed: Float = 15
     let initialBallSpeed: Float = 141.4213562373
     let randomNumberGenerator = GKARC4RandomSource()
+    let minimumBallVelocityThreshold: CGFloat = 1
     
     // MARK: Instantiation
     
@@ -87,7 +88,10 @@ class GameScene: SKScene {
         if let ballFrame = ball?.frame,
            let gameBoardFrame = gameBoard?.frame,
            !gameBoardFrame.contains(ballFrame) {
-            resetBallNode()
+                let p1Pt = ball?.position.x.sign == .minus
+                score.p1 += p1Pt ? 1 : 0
+                score.p2 += !p1Pt ? 1 : 0
+                shouldResetBall = true
         }
     }
     
@@ -97,7 +101,6 @@ class GameScene: SKScene {
         // Set physics contact delegate
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = .zero
-//        self.physicsWorld.gravity.dx = self.physicsWorld.gravity.dy
         
         // Create reference to titleLabel
         self.titleLabel = self.childNode(withName: "//titleLabel") as? SKLabelNode
@@ -145,14 +148,15 @@ class GameScene: SKScene {
         // Create reference to ball, set up physics
         self.ball = self.childNode(withName: "//ball") as? SKSpriteNode
         if let ball = self.ball,
-           let _ = ball.texture {
-            let physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2) // (texture: texture, size: ballSprite.size)
+           let texture = ball.texture {
+            let physicsBody = SKPhysicsBody(texture: texture, size: ball.size)
             physicsBody.friction = 0
             physicsBody.linearDamping = 0
             physicsBody.restitution = 1
             physicsBody.category = .ball
             physicsBody.collisionCategories = [.enclosingWall, .paddle]
             physicsBody.contactTestCategories = [.gameBoard]
+            physicsBody.allowsRotation = false
             ball.physicsBody = physicsBody
             
             resetBallNode()
@@ -200,6 +204,7 @@ class GameScene: SKScene {
     private func resetBallNode() {
         ball?.position = .zero
         ball?.physicsBody?.velocity = .zero
+        ball?.physicsBody?.angularVelocity = .zero
         
         var randomAngle = randomNumberGenerator.nextUniform() * .pi * 0.8 + .pi * 0.1
         if randomNumberGenerator.nextInt(upperBound: 2) == 1 { randomAngle += .pi }

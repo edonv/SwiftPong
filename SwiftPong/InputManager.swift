@@ -58,10 +58,10 @@ class InputManager {
         movementByPlayer[0] = 0.0
         movementByPlayer[1] = 0.0
         
-        movementByPlayer[0] -= keyboard.button(forKeyCode: .keyW)?.isPressed == true ? 1.0 : 0.0
-        movementByPlayer[0] += keyboard.button(forKeyCode: .keyS)?.isPressed == true ? 1.0 : 0.0
-        movementByPlayer[1] -= keyboard.button(forKeyCode: .upArrow)?.isPressed == true ? 1.0 : 0.0
-        movementByPlayer[1] += keyboard.button(forKeyCode: .downArrow)?.isPressed == true ? 1.0 : 0.0
+        movementByPlayer[0] += keyboard.button(forKeyCode: .keyW)?.isPressed == true ? 1.0 : 0.0
+        movementByPlayer[0] -= keyboard.button(forKeyCode: .keyS)?.isPressed == true ? 1.0 : 0.0
+        movementByPlayer[1] += keyboard.button(forKeyCode: .upArrow)?.isPressed == true ? 1.0 : 0.0
+        movementByPlayer[1] -= keyboard.button(forKeyCode: .downArrow)?.isPressed == true ? 1.0 : 0.0
     }
 }
 

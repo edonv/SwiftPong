@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import GameplayKit
 
 // MARK: Core Scene Logic
 
@@ -25,6 +26,10 @@ class GameScene: SKScene {
 
     var score: (p1: Int, p2: Int) = (0, 0)
     var shouldResetBall = false
+    
+    let paddleSpeed: Float = 15
+    let initialBallSpeed: Float = 141.4213562373
+    let randomNumberGenerator = GKARC4RandomSource()
     
     // MARK: Instantiation
     
@@ -51,6 +56,18 @@ class GameScene: SKScene {
     /// This is called every frame.
     override func update(_ currentTime: TimeInterval) {
         InputManager.shared.update()
+        
+        leftPaddle?.position.y += CGFloat(InputManager.shared.getMovement(forPlayer: 0) * paddleSpeed)
+        rightPaddle?.position.y += CGFloat(InputManager.shared.getMovement(forPlayer: 1) * paddleSpeed)
+        
+        if let leftPaddle = self.leftPaddle {
+            leftPaddle.position.y = leftPaddle.position.y
+                .clamped(to: (bottomWall?.position.y ?? 0.0)...(topWall?.position.y ?? 0.0))
+        }
+        if let rightPaddle = self.rightPaddle {
+            rightPaddle.position.y = rightPaddle.position.y
+                .clamped(to: (bottomWall?.position.y ?? 0.0)...(topWall?.position.y ?? 0.0))
+        }
         
         // Update score
         if let leftScoreLabel = self.leftScoreLabel,
@@ -120,7 +137,7 @@ class GameScene: SKScene {
         // Create reference to ball, set up physics
         self.ball = self.childNode(withName: "//ball") as? SKSpriteNode
         if let ball = self.ball,
-           let texture = ball.texture {
+           let _ = ball.texture {
             let physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2) // (texture: texture, size: ballSprite.size)
             physicsBody.friction = 0
             physicsBody.linearDamping = 0
@@ -176,10 +193,15 @@ class GameScene: SKScene {
         ball?.position = .zero
         ball?.physicsBody?.velocity = .zero
         
-        #warning("TODO: randomize force direction")
+        let randomAngle = randomNumberGenerator.nextUniform() * 2 * .pi
+        
+        let impulseX = sin(randomAngle) * initialBallSpeed
+        let impulseY = cos(randomAngle) * initialBallSpeed
+        let impulse = CGVector(dx: CGFloat(impulseX), dy: CGFloat(impulseY))
+        
         ball?.run(.sequence([
             .wait(forDuration: 1, withRange: 3),
-            .applyImpulse(.init(dx: 100, dy: 100), duration: 0.1)
+            .applyImpulse(impulse, duration: 0.1)
         ]))
     }
 }

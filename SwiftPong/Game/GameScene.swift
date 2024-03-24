@@ -62,13 +62,15 @@ class GameScene: SKScene {
         // Update paddle position
         leftPaddle?.position.y += CGFloat(InputManager.shared.getMovement(forPlayer: 0) * paddleSpeed)
         rightPaddle?.position.y += CGFloat(InputManager.shared.getMovement(forPlayer: 1) * paddleSpeed)
+        let paddleYPosRange = (bottomWall?.position.y ?? 0.0)...(topWall?.position.y ?? 0.0)
         if let leftPaddle = self.leftPaddle {
             leftPaddle.position.y = leftPaddle.position.y
-                .clamped(to: (bottomWall?.position.y ?? 0.0)...(topWall?.position.y ?? 0.0))
+                .clamped(to: paddleYPosRange)
+            
         }
         if let rightPaddle = self.rightPaddle {
             rightPaddle.position.y = rightPaddle.position.y
-                .clamped(to: (bottomWall?.position.y ?? 0.0)...(topWall?.position.y ?? 0.0))
+                .clamped(to: paddleYPosRange)
         }
         
         // Update score

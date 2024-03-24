@@ -82,6 +82,13 @@ class GameScene: SKScene {
             resetBallNode()
             shouldResetBall = false
         }
+        
+        // Confirm ball is inside the game frame
+        if let ballFrame = ball?.frame,
+           let gameBoardFrame = gameBoard?.frame,
+           !gameBoardFrame.contains(ballFrame) {
+            resetBallNode()
+        }
     }
     
     // MARK: Internals

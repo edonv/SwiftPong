@@ -87,11 +87,19 @@ class GameScene: SKScene {
         // Confirm ball is inside the game frame
         if let ballFrame = ball?.frame,
            let gameBoardFrame = gameBoard?.frame,
-           !gameBoardFrame.contains(ballFrame) {
-                let p1Pt = ball?.position.x.sign == .minus
+           !gameBoardFrame.contains(ballFrame),
+           let ballPos = ball?.position {
+            // Only add points if it's out of bounds on the X axis
+            // Compare leading edges of ball and board, and trailing edges too
+            if ballFrame.minX < gameBoardFrame.minX
+                || ballFrame.maxX > gameBoardFrame.maxX {
+                let p1Pt = ballPos.x.sign == .minus
                 score.p1 += p1Pt ? 1 : 0
                 score.p2 += !p1Pt ? 1 : 0
-                shouldResetBall = true
+            }
+            
+            // Reset ball if it's out of the game frame
+            shouldResetBall = true
         }
     }
     

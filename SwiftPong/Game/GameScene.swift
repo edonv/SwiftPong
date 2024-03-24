@@ -193,7 +193,8 @@ class GameScene: SKScene {
         ball?.position = .zero
         ball?.physicsBody?.velocity = .zero
         
-        let randomAngle = randomNumberGenerator.nextUniform() * 2 * .pi
+        var randomAngle = randomNumberGenerator.nextUniform() * .pi * 0.8 + .pi * 0.1
+        if randomNumberGenerator.nextInt(upperBound: 2) == 1 { randomAngle += .pi }
         
         let impulseX = sin(randomAngle) * initialBallSpeed
         let impulseY = cos(randomAngle) * initialBallSpeed
